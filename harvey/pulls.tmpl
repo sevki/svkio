@@ -1,0 +1,16 @@
+{{define "title"}}harvey open pull requests{{end}}
+{{define "content"}}
+{{ template "feed" . }}
+{{end}}  <!-- context -->
+{{ define "feed" }}{{ $pulls := json "https://api.github.com/repos/harvey-os/harvey/pulls?page=1&per_page=100&sort=created&status=open" }}
+<b>harvey open pulls</b>
+<pre>{{ range $pulls }}
+	<a href="{{ .html_url }}">#{{ .number }}</a>	{{ .title }}
+
+{{ .body }}
+
+O: {{ .user.login }}
+
+{{ end }} <!-- range -->
+</pre>
+{{ end }} <!-- feed -->

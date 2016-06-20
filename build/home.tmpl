@@ -1,0 +1,174 @@
+{{define "title"}}build related articles, links and tutorials{{end}}
+
+{{define "content"}}
+<h1>build ― Build as a library</h1>
+<p>
+	Build is a set of libraries that follow the bazel/buck file types to create a set of abstraction for building build enviroments.
+</p>
+to get the cmd line app...
+<p>
+
+	<pre>go get sevki.org/build/cmd/build</pre>
+</p>
+<ul>
+	<li>
+		<a href="https://sevki.org/build">docs</a>
+	</li>
+	<li>
+		<a href="#roadmap">roadmap</a>
+	</li>
+	<li>
+		<a href="changelog">changelog</a>
+	</li>
+</ul>
+<h3 id="roadmap">Road Map</h3>
+<table>
+	<tr>
+		<td>0.1.0-beta</td>
+		<td>
+			<ul>
+				<li>harvey compilation</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>0.2.0-beta</td>
+		<td>
+			<ul>
+				<li>obj-c target</li>
+				<li>java target</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>0.3.0-beta</td>
+		<td>
+			<ul>
+				<li>complete test coverage</li>
+				<li>complete golint, govet</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>0.4.0-beta</td>
+		<td>
+			<ul>
+				<li>docker target</li>
+				<li>go target</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>0.5.0</td>
+		<td>
+			<ul>
+				<li>compiles self</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>0.6.0</td>
+		<td>
+			<ul>
+				<li>uses plan9 namespaces </li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>1.0.0</td>
+		<td>
+			<ul>
+				<li>distributed builds</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+
+</ul>
+
+
+<br/>
+<b style="display:inline;">Notes <a href="//fistfulofbytes.com/feed.atom"><span style="color:#f37538; border-radius:3px;  padding-right:3px; padding-left:3px;" class="octicon octicon-rss"></span></a>
+</b>
+<br/>
+{{ template "feed" . }}
+<br/>
+{{ template "downloads" . }}
+<br/>
+<b>mail list chatter</b>
+<ul>
+ 	<li>
+		<a href="https://groups.google.com/forum/#!topic/harvey/IwK8-gebgyw/discussion">Why not make?</a>
+	</li>
+ 	<li>
+		<a href="https://groups.google.com/forum/#!topic/harvey/nvsiwu2q5SA/discussion">Buck/Bazel and build</a>
+	</li>
+</ul>
+
+<br/>
+<b>alternatives</b>
+<ul>
+ 	<li>
+		<a href="https://buckbuild.com/">Buck</a>
+	</li>
+ 	<li>
+		<a href="http://bazel.io/">Bazel</a>
+	</li>
+	<li>
+		<a href="https://pantsbuild.github.io/">Pants</a>
+	</li>
+</ul>
+<br/>
+<b>build status</b>
+<br/>
+<img src="https://travis-ci.org/sevki/build.svg?branch=master"/>
+{{end}}  <!-- context -->
+{{ define "feed" }}
+{{ $feed := json "https://fistfulofbytes.com/.json" }}
+<ul>
+	{{ range $feed }}
+	{{ if contains .Tags "build" }}
+	
+	<li>
+		{{ $Time := jsondate .Time }}
+		<a href="{{.Link}}">{{.Title}}</a> ―
+		<small style="color: silver;">{{ $Time.Month }} {{ $Time.Year }}</small>
+		{{ $since := $Time | now.Sub }}
+		
+		{{ $new := lessthan $since.Hours 720 }}
+		
+		{{ if $new }}
+		<img src="https://static.sevki.org/new.gif" alt="NEW" />
+		{{ end }}
+	</li>
+	{{ end }}
+	{{ end }} <!-- range -->
+</ul>
+{{ end }} <!-- feed -->
+
+<!-- downloads --> 
+{{ define "downloads" }}
+{{ $releases := json "https://api.github.com/repos/sevki/build/releases?page=1&per_page=1&sort=created" }}
+{{ range $releases }}
+{{ $Time := jsondate .published_at }}
+
+{{ $since := $Time | now.Sub }}
+
+{{ $new := lessthan $since.Hours 720 }}
+<br/>
+<b>downloads</b>
+{{ if $new }}
+<img src="https://static.sevki.org/new.gif" alt="NEW" />
+{{ end }}
+
+<ul>
+	{{ range .assets }}
+	<li>
+		<a href="{{.browser_download_url}}" >{{.name}}</a>
+	</li>
+	{{ end }} <!-- range -->
+</ul>
+{{end}}
+{{ end }} <!-- downloads -->
+

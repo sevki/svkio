@@ -1,0 +1,123 @@
+{{define "title"}}sevki.io{{end}}
+
+
+{{define "content"}}
+
+{{ template "header" . }}
+{{ template "projects" . }}
+{{ template "repos" . }}
+{{ template "feed" . }}
+{{ template "other" . }}
+
+{{end}}  <!-- context -->
+
+{{ define "repos" }}
+	{{ $repos := json "https://api.github.com/users/sevki/repos?page=1&per_page=100&sort=created" }}
+	<br/><b style="display:inline;">Repos</b><br/>
+	<ul>
+		{{ range $repos }}
+		{{ template "repo" . }}
+		{{ end }} <!-- range -->
+	</ul>
+{{ end }} <!-- repos -->
+
+
+{{ define "repo" }}
+{{ if .fork }}{{ else }}
+
+{{ if .language }}
+
+{{ $isin := isrepeated .language "Go" "C" "Rust" "D" "JavaScript" "Objective-C" "Shell" }}
+{{ $isGo := isrepeated .language "Go" }}
+{{ $isLegalName := isrepeated .name "Posts" "gofy" "codesearch" "ed" "rsc" "inflect" "fathertime" "gobuildtest" }}
+
+{{ if $isLegalName }}{{ else }}
+{{ if $isin }}
+<li>
+	{{ if $isGo }}
+	<a href="https://sevki.org/{{.name}}">{{.name}}</a>
+	{{ else }}
+	<a href="https://github.com/sevki/{{.name}}">{{.name}}</a>
+	{{ end }}
+	{{ .description | linkify }} ― <tt>{{.language}}</tt> 
+
+	{{ $since := jsondate .pushed_at | now.Sub }}
+	
+	{{ $new := lessthan $since.Hours 720 }}
+	
+	{{ if $new }}
+	<img src="https://static.sevki.org/new.gif" alt="NEW"/>
+	{{ end }}
+</li>
+{{ end }} <!-- isin -->
+{{ end }} <!-- isLegalName -->
+{{ end }} <!-- language -->
+{{ end }} <!-- fork -->
+
+{{ end }} <!-- repo -->
+
+{{ define "feed" }}
+<br/><b style="display:inline;">Notes  <a href="//fistfulofbytes.com/feed.atom"><span style="color:#f37538; border-radius:3px;  padding-right:3px; padding-left:3px;" class="octicon octicon-rss"></span></a></b> <br/>
+{{ $feed := json "https://fistfulofbytes.com/.json" }}
+<ul>
+	{{ range $feed }}
+
+	<li>
+		{{ $Time := jsondate .Time }}
+		<a href="{{.Link}}">{{.Title}}</a> ―
+		<small style="color: silver;">{{ $Time.Month }} {{ $Time.Year }}</small>
+		{{ $since := $Time | now.Sub }}
+		
+		{{ $new := lessthan $since.Hours 720 }}
+		
+		{{ if $new }}
+		<img src="https://static.sevki.org/new.gif" alt="NEW" />
+		{{ end }}
+	</li>
+	{{ end }} <!-- range -->
+</ul>
+{{ end }} <!-- feed -->
+
+{{ define "other" }}
+<br/><b style="display:inline;">Other stuff</b><br/>
+<ul>
+	<li>blog ― <a href="//fistfulofbytes.com/">fistful of bytes</a> </li>
+	<li>twitter ― <a href="https://twitter.com/sevki" rel="me">@sevki</a></li>
+	<li>github ― <a href="https://github.com/sevki" rel="me">sevki</a></li>
+	<li>pgp ― <a href="http://pgp.mit.edu/pks/lookup?op=get&search=0x9C2BFEF6FB3B22FB">9C2B FEF6 FB3B 22FB</a></li>
+	<li><a href="//plan9.io/">plan9.io</a> </li>
+	<li><a href="/static/art.html" rel="me">religion</a></li>
+</ul>
+{{ end }} <!-- other -->
+
+
+{{ define "header" }}
+<table>
+	<tr>
+		<td>
+			<img  src="static/sevki.png" alt="sevki" />
+		</td>
+		<td width=10 />
+		<td style="vertical-align: middle;">
+				<h1 style="display:inline;">Sevki Hasirci</h1><br/>
+				<small>s@sevki.org</small>
+		</td>
+	</tr>
+</table>
+{{ end }}
+
+
+{{ define "projects" }}
+<p>
+	<ul>
+		<li>
+			<a href="/build/">build</a><br/>
+			<small>Build documentation, tutorials, examples...</small>
+		</li>
+		<li>
+			<a href="/harvey/">harvey</a><br/>
+			<small>harvey related documentation, CLs...</small>
+		</li>
+	</ul>
+</p>
+{{ end }} <!-- repos -->

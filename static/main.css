@@ -1,0 +1,29 @@
+body{
+    margin-left: 5%; 
+    margin-right: 5%; 
+}
+address {
+    color: gray;
+}
+address code {
+    color:silver;
+}
+
+ul
+{
+    margin:0px;
+    margin-top: 5px;
+    list-style-type: none;
+    padding:0px;
+    padding-left:10px;
+}
+td ul {
+    margin: 0px;
+}
+td {
+    vertical-align: top;
+}
+font {
+    font-size: medium;
+    font-weight: bold;
+}
