@@ -126,6 +126,7 @@ to get the cmd line app...
 {{end}}  <!-- context -->
 {{ define "feed" }}
 {{ $feed := json "https://fistfulofbytes.com/.json" }}
+{{ $feed}}
 <ul>
 	{{ range $feed }}
 	{{ if contains .Tags "build" }}
