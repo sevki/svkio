@@ -27,7 +27,7 @@
 
 {{ if .language }}
 
-{{ $isin := isrepeated .language "Go" "C" "Rust" "D" "JavaScript" "Objective-C" "Shell" }}
+{{ $isin := isrepeated .language "Go" "C" "Rust" "D" "Shell" }}
 {{ $isGo := isrepeated .language "Go" }}
 {{ $isLegalName := isrepeated .name "Posts" "gofy" "codesearch" "ed" "rsc" "inflect" "fathertime" "gobuildtest" }}
 
@@ -41,7 +41,7 @@
 	{{ end }}
 	{{ .description | linkify }} ― <tt>{{.language}}</tt> 
 
-	{{ $since := jsondate .pushed_at | now.Sub }}
+	{{ $since := jsondate .created_at | now.Sub }}
 	
 	{{ $new := lessthan $since.Hours 720 }}
 	
