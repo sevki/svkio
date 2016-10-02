@@ -2,6 +2,17 @@
 
 
 {{define "content"}}
+by sigining-off your commits you make the <a href="http://developercertificate.org/">following</a> declaration .
+
+but chances are you are here because you screwed up signing-off one of your commits. 
+if it's your last one, you are in luck, just do
+<code>
+git commit --amend -s --no-edit
+</code>
+and do a force push. If you have more then one commit thats not signed-off
+god help you. I'd suggest googling a rebase strategy.
+
+
 <pre>
 Developer Certificate of Origin
 Version 1.1
