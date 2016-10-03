@@ -23,16 +23,21 @@ td ul {
 td {
     vertical-align: top;
 }
-font {
-    font-size: medium;
-    font-weight: bold;
+code {
+    padding: 5px;
+    background-color: #FFD;
+    font-family: monospace;
 }
 pre {
     overflow: scroll;
     padding: 5px;
     background-color: #FFD;
-    font-family: "Courier New", Courier, monospace border-radius:3px;
+    font-family: monospace;
     display: block;
     white-space: pre;
     margin: 1em 0px 1em;
+}
+font {
+    font-size: medium;
+    font-weight: bold;
 }
