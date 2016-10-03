@@ -24,11 +24,22 @@ td {
     vertical-align: top;
 }
 code {
-    padding: 3px;
+    padding: 5px;
     background-color: #FFD;
     font-family: monospace;
 }
-
+pre {
+    overflow: scroll;
+    padding: 5px;
+    background-color: #FFD;
+    font-family: monospace;
+    display: block;
+    white-space: pre;
+    margin: 1em 0px 1em;
+}
+address code {
+    font-family: monospace;
+}
 font {
     font-size: medium;
     font-weight: bold;
