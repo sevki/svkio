@@ -7,6 +7,8 @@ address {
 }
 address code {
     color:silver;
+    font-family: monospace;
+    background-color: white;
 }
 
 ul
@@ -37,9 +39,7 @@ pre {
     white-space: pre;
     margin: 1em 0px 1em;
 }
-address code {
-    font-family: monospace;
-}
+
 font {
     font-size: medium;
     font-weight: bold;
