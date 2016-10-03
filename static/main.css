@@ -8,7 +8,8 @@ address {
 address code {
     color:silver;
     font-family: monospace;
-    background-color: white;
+    background-color: transparent;
+    padding: 0px;
 }
 
 ul
