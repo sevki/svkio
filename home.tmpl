@@ -29,7 +29,7 @@
 
 {{ $isin := isrepeated .language "Go" "C" "Rust" "D" "Shell" }}
 {{ $isGo := isrepeated .language "Go" }}
-{{ $isLegalName := isrepeated .name "Posts" "gofy" "codesearch" "ed" "rsc" "inflect" "fathertime" "gobuildtest" }}
+{{ $isLegalName := isrepeated .name "Posts" "zfs" "codesearch" "ed" "rsc" "inflect" "fathertime" "gobuildtest" }}
 
 {{ if $isLegalName }}{{ else }}
 {{ if $isin }}
