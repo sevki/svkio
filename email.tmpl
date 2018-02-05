@@ -8,16 +8,29 @@ Hi!
 You are probably here because you've sent me an email and got a link to this page as a response. 
 <p/>
 
-Here's what's going on? I am trying to change my communication habits. From now on I'll only be using my email s@sevki.io 
+<b>Here's what's going on?</b> 
+I am trying to change my communication habits. 
+From now on I'll only be using my email <a href="mailto:s@sevki.io">s@sevki.io</a> 
 <p/>
 You see; I, like many others, have been so overwhelmed with GitHub notifications, multiple different slacks and what have you. I really don't want to spend rest of my life sifting through notifications on my phone.
 <p/>
-So, I have built my own email server. It is unique to my own personal needs. It, for instance, replies automatically to cold recruitment emails, scans files for viruses, and knows PGP at the server level. 
+So, I have built my own email server. It is unique to my own personal needs, it does things like replying to recruiter emails automatically, scanning attachments for viruses and verifying PGP signatures or decrypting emails signed with my public key.
 <p/>
-That does mean that there are some algorithms standing between your emails and my eyes, mostly identity information. Here are some stuff you can do to makesure I can see your email
+That does mean that there are some algorithms standing between your emails and my eyes,
 <p/>
+Here are some stuff you can do to increase the chances of me seeing your email:
 <ul>
-  <li>Sign your emails with <a href="https://www.openpgp.org/">PGP</a> or <a href="http://www.dkim.org/">DKIM</a></li>
+  <ol>
+  <b>Sign your emails with <a href="http://www.dkim.org/">DKIM</a> have SPF and DMARC stuff all set.</b>
+  If your emails aren't DKIM signed, your email aint getting trough!<br/>
+  (This is enabled in almost all email providers by default) 
+  </ol>
+  <ol>
+   <b>Sign your emails with PGP</b>
+   If you sign your emails and your public key is in my keychain, you'll get in.
+   If your public key isn't in my keyring, ask someone I know to forward your email to me, or contribute to a project I pull from and sign your commits.
+  </ol>
+
 </ul>
 
 {{ end }}
