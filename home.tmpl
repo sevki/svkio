@@ -58,7 +58,7 @@
 
 {{ define "feed" }}
 <br/><b style="display:inline;">Notes  <a href="//fistfulofbytes.com/feed.atom"><span style="color:#f37538; border-radius:3px;  padding-right:3px; padding-left:3px;" class="octicon octicon-rss"></span></a></b> <br/>
-{{ $feed := json "https://fistfulofbytes.com/.json" }}
+{{ $feed := json "http://ffbytes-http/.json" }}
 <ul>
 	{{ range $feed }}
 
